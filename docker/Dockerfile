@@ -46,5 +46,11 @@ COPY ./docker/scripts/* /
 RUN chown -R ${USER_NAME} /*.sh && chmod +x /*.sh
 USER ${USER_NAME}
 
+RUN git config --global user.email "sara.el-haimer@edu.dsti.intitute" \
+    && git config --global user.name "sarelh-hub"
+
+RUN python3.10 -m nltk.downloader stopwords && python3.10 -m nltk.downloader punkt
+
+
 COPY . /app/
 CMD ["/startup-script.sh"]
